@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>登記簿ショート プレイヤー</title>
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="登記簿ショート">
+<meta name="theme-color" content="#0d1117">
+<link rel="apple-touch-icon" href="icon-180.png">
+<style>
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+html,body{min-height:100%; background:#000;}
+body{
+  font-family:-apple-system,"Hiragino Sans",sans-serif; color:#e6edf3;
+  display:flex; justify-content:center;
+}
+#wrap{
+  width:100%; max-width:430px; min-height:100dvh; background:#0d1117;
+  padding:calc(env(safe-area-inset-top) + 24px) 20px calc(env(safe-area-inset-bottom) + 32px);
+}
+header{ margin-bottom:18px; }
+.eyebrow{ font-size:13px; font-weight:800; color:#e3b341; letter-spacing:.14em; }
+h1{ font-size:26px; font-weight:900; line-height:1.3; margin-top:4px; }
+.sub{ font-size:13px; color:#8b949e; margin-top:6px; line-height:1.6; }
+#list{ display:flex; flex-direction:column; gap:12px; margin-top:18px; }
+a.card{
+  display:block; text-decoration:none; color:inherit;
+  background:#161b22; border:1px solid #30363d; border-radius:14px; padding:14px 16px;
+}
+a.card:active{ background:#1c2330; }
+.card .no{ font-size:12px; font-weight:800; color:#e3b341; letter-spacing:.1em; }
+.card .t{ font-size:18px; font-weight:800; line-height:1.45; margin-top:3px; }
+.card .m{ font-size:12px; color:#8b949e; margin-top:5px; }
+.new .no::after{ content:" NEW"; color:#7ee787; }
+footer{ margin-top:26px; font-size:11px; color:#8b949e; line-height:1.7; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <header>
+    <div class="eyebrow">TOUKI-SHORTS</div>
+    <h1>登記簿ショート<br>プレイヤー</h1>
+    <p class="sub">タップで全画面再生（自動進行・56秒）。<br>再生が始まったら画面録画してください。</p>
+  </header>
+
+  <div id="list"></div>
+
+  <footer>
+    収録メモ：おやすみモード → 画面録画開始 → 動画をタップ → 56秒放置 → 停止。<br>
+    ホーム画面から起動すると全画面（ブラウザ枠なし）で開きます。
+  </footer>
+</div>
+
+<script>
+/* 新作はこの配列の先頭に1行追加するだけ */
+var VIDEOS = [
+  { n:3, slug:"toyota-kansayaku", title:"トヨタが“監査役”を廃止した日", company:"トヨタ自動車株式会社", date:"2026-07-16" },
+  { n:2, slug:"toyota",           title:"本店、トヨタ町１番地。",             company:"トヨタ自動車株式会社", date:"2026-07-16" },
+  { n:1, slug:"suntory",          title:"資本金1円のサントリー",             company:"サントリー株式会社",   date:"2026-07-15" }
+];
+var list = document.getElementById('list');
+VIDEOS.forEach(function(v, i){
+  var a = document.createElement('a');
+  a.className = 'card' + (i === 0 ? ' new' : '');
+  a.href = 'shorts/' + v.slug + '.html';
+  a.innerHTML = '<div class="no">#' + v.n + '</div>' +
+                '<div class="t">' + v.title + '</div>' +
+                '<div class="m">' + v.company + '｜' + v.date + '</div>';
+  list.appendChild(a);
+});
+</script>
+</body>
+</html>
