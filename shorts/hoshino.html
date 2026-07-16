@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>登記簿ショート｜目的欄に納骨堂（星野リゾート）</title>
+<style>
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+html,body{height:100%; background:#000;}
+body{
+  font-family:-apple-system,"Hiragino Sans",sans-serif; color:#e6edf3;
+  display:flex; align-items:center; justify-content:center;
+}
+#stage{
+  position:relative; width:100%; max-width:430px; height:100dvh; max-height:100dvh;
+  background:#0d1117; overflow:hidden; user-select:none; cursor:pointer;
+}
+#bars{ position:absolute; top:calc(env(safe-area-inset-top) + 8px); left:10px; right:10px;
+  display:flex; gap:4px; z-index:30; }
+.bar{ flex:1; height:3px; background:rgba(255,255,255,.22); border-radius:99px; overflow:hidden; }
+.bar i{ display:block; height:100%; width:0%; background:#e3b341; }
+.scene{ position:absolute; inset:0; padding:calc(env(safe-area-inset-top) + 44px) 48px 64px;
+  display:flex; flex-direction:column; justify-content:center; gap:14px;
+  opacity:0; transform:translateY(12px); transition:opacity .45s, transform .45s;
+  pointer-events:none; }
+.scene.on{ opacity:1; transform:none; pointer-events:auto; }
+.eyebrow{ font-size:15px; font-weight:800; color:#e3b341; letter-spacing:.12em; }
+h1{ font-size:31px; line-height:1.4; font-weight:900; text-wrap:balance; }
+h2{ font-size:25px; line-height:1.45; font-weight:900; }
+.big{ font-size:52px; font-weight:900; color:#e3b341; line-height:1.2; }
+.cap{ font-size:17px; line-height:1.8; color:#c9d5e3; }
+.cap b{ color:#e3b341; }
+.cap strong{ color:#79c0ff; }
+.small{ font-size:13px; color:#8b949e; line-height:1.7; }
+.tcard{ background:#161b22; border:1px solid #30363d; border-radius:14px; padding:14px; }
+.trow{ display:grid; grid-template-columns:7.6em 1fr; gap:2px 10px; padding:6px 0;
+  border-bottom:1px dashed #21262d; font-size:16px; }
+.trow:last-child{ border-bottom:none; }
+.tl{ color:#8b949e; font-size:13px; padding-top:3px; }
+.hl{ background:rgba(227,179,65,.16); border-radius:6px; padding:0 4px;
+  animation:pulse 1.6s ease-in-out infinite; }
+@keyframes pulse{ 50%{ background:rgba(227,179,65,.34); } }
+.strike{ text-decoration:line-through; text-decoration-color:#ef4444; color:#8b949e; }
+.timeline{ border-left:3px solid #e3b341; padding-left:14px; display:flex; flex-direction:column; gap:10px; }
+.tstep .d{ font-size:13px; color:#e3b341; font-weight:800; }
+.tstep .n{ font-size:18px; font-weight:800; line-height:1.5; }
+.vs{ display:flex; flex-direction:column; gap:10px; }
+.vs .box{ background:#161b22; border:1px solid #30363d; border-radius:12px; padding:12px 14px; font-size:17px; line-height:1.7; }
+.vs .box .t{ font-size:13px; color:#8b949e; font-weight:800; }
+.vs .box.new{ border-color:rgba(126,231,135,.5); }
+#replay{ position:absolute; inset:0; z-index:40; display:none; align-items:center; justify-content:center;
+  flex-direction:column; gap:18px; background:rgba(0,0,0,.72); }
+#replay button{ font-family:inherit; font-size:18px; font-weight:800; color:#0d1117; background:#e3b341;
+  border:none; border-radius:999px; padding:14px 34px; cursor:pointer; }
+@media (prefers-reduced-motion: reduce){ .scene{ transition:none; } .hl{ animation:none; } }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bars"></div>
+
+  <!-- S1 フック（3.5s） -->
+  <section class="scene">
+    <div class="eyebrow">登記簿ショート #4</div>
+    <h1>星野リゾートの登記簿、取ってみた。</h1>
+    <div class="big">目的欄に、<br>納骨堂。</div>
+    <p class="cap">…リゾートで？</p>
+  </section>
+
+  <!-- S2 会社の顔（6.5s） -->
+  <section class="scene">
+    <div class="eyebrow">これが実物（2026年7月15日時点）</div>
+    <div class="tcard">
+      <div class="trow"><span class="tl">商号</span><span><b>株式会社星野リゾート</b></span></div>
+      <div class="trow"><span class="tl">本店</span><span>長野県北佐久郡軽井沢町大字長倉2148番地</span></div>
+      <div class="trow"><span class="tl">会社成立</span><span>昭和26年1月11日</span></div>
+      <div class="trow"><span class="tl">公告方法</span><span>信濃毎日新聞に掲載する</span></div>
+    </div>
+    <p class="cap">登記簿は<b>誰でも取れる「会社の履歴書」</b>。公告が官報でも電子でもなく<b>地元紙</b>なのも渋い。</p>
+  </section>
+
+  <!-- S3 衝撃：目的欄ツアー（7.5s） -->
+  <section class="scene">
+    <div class="eyebrow">事業の「目的」を見てほしい</div>
+    <div class="tcard">
+      <div class="trow"><span class="tl">1号</span><span>温泉旅館業および飲食業</span></div>
+      <div class="trow"><span class="tl">7号</span><span>砂・砂利の加工販売</span></div>
+      <div class="trow"><span class="tl">9号</span><span>一般乗合旅客自動車運送業（路線バス）</span></div>
+      <div class="trow"><span class="tl">17号</span><span class="hl"><b>納骨堂の経営</b></span></div>
+      <div class="trow"><span class="tl">19号</span><span>ビールの製造販売</span></div>
+    </div>
+    <p class="cap"><b>全25号</b>。温泉宿が地域で担ってきた“何でも屋”が、そのまま残っている。</p>
+  </section>
+
+  <!-- S4 種明かし：商号の履歴（10s） -->
+  <section class="scene">
+    <div class="eyebrow">種明かし：もとは「温泉宿」</div>
+    <div class="timeline">
+      <div class="tstep"><div class="d">大正3年（1914）ごろ</div><div class="n">星野温泉旅館として創業（とされる）</div></div>
+      <div class="tstep"><div class="d">昭和26年1月11日</div><div class="n">「<span class="strike">株式会社星野温泉</span>」として法人成立</div></div>
+      <div class="tstep"><div class="d">平成7年1月29日</div><div class="n">「<b>株式会社星野リゾート</b>」へ改称</div></div>
+    </div>
+    <p class="cap">温泉宿が地域であらゆる事業を引き受けてきた歴史が、<b>目的欄に堆積</b>したとみられる。納骨堂もその名残。</p>
+  </section>
+
+  <!-- S5 本命：目的は登記事項（10s） -->
+  <section class="scene">
+    <div class="eyebrow">勉強ポイント：目的は“登記事項”</div>
+    <h2>会社の「目的」は、<br><span style="color:#e3b341">広く書いておける。</span></h2>
+    <p class="cap">目的は<strong>定款の絶対的記載事項</strong>（会27条）で、<strong>登記事項</strong>（会911条）。<b>実際にやっていなくても書ける</b>。だから登記簿を見れば「その会社が何をする会社か」が誰でも分かる。</p>
+  </section>
+
+  <!-- S6 マニア①：中小企業サイズ（7.5s） -->
+  <section class="scene">
+    <div class="eyebrow">マニア①：巨大ブランド、中身は…</div>
+    <div class="tcard">
+      <div class="trow"><span class="tl">資本金</span><span class="hl"><b>金1000万円</b></span></div>
+      <div class="trow"><span class="tl">発行済株式</span><span>104万900株</span></div>
+      <div class="trow"><span class="tl">株式の譲渡</span><span>取締役会の承認が必要（<b>非公開会社</b>）</span></div>
+      <div class="trow"><span class="tl">監査役</span><span>監査の範囲を<b>会計に限定</b></span></div>
+    </div>
+    <p class="cap">有名でも登記は<b>“中小企業サイズ”</b>。会計限定監査役（会389条）は平成27年から登記事項に。</p>
+  </section>
+
+  <!-- S7 マニア②：星野がいない（6s） -->
+  <section class="scene">
+    <div class="eyebrow">マニア②：役員欄に「星野」がいない</div>
+    <div class="vs">
+      <div class="box"><div class="t">イメージ</div>“星野さんの会社”</div>
+      <div class="box new"><div class="t">登記の現実</div>取締役に<b>星野姓はゼロ</b></div>
+    </div>
+    <p class="cap">令和8年6月、「星野リゾート<b>ホールディングスから</b>分割」。<b>同じ住所</b>にHD会社がある。有名な顔は、そちら側とみられる。</p>
+  </section>
+
+  <!-- S8 締め（5s） -->
+  <section class="scene">
+    <h1>登記簿は、<br>会社の履歴書。</h1>
+    <div class="big" style="font-size:32px">納骨堂まで、<br>ぜんぶ載ってる。</div>
+    <p class="small">出典：登記情報提供サービス（2026年7月15日取得・会社法人等番号1000-01-008688）<br>個人の住所・氏名は公人を除き伏せています／教育目的の解説であり、断定は登記記録の記載事実のみ・沿革等は推測を含みます。</p>
+  </section>
+
+  <div id="replay"><button id="replayBtn">▶ もう一度</button></div>
+</div>
+
+<script>
+var DUR = [3500, 6500, 7500, 10000, 10000, 7500, 6000, 5000];
+var scenes = document.querySelectorAll('.scene');
+var bars = document.getElementById('bars');
+DUR.forEach(function(){ var b=document.createElement('div'); b.className='bar'; b.innerHTML='<i></i>'; bars.appendChild(b); });
+var fills = bars.querySelectorAll('.bar i');
+
+var cur=-1, t0=0, raf=null, timer=null, paused=false, pausedAt=0;
+function show(i){
+  if(i>=scenes.length){ document.getElementById('replay').style.display='flex'; return; }
+  cur=i;
+  scenes.forEach(function(s,k){ s.classList.toggle('on', k===i); });
+  for(var k=0;k<fills.length;k++){ fills[k].style.width = k<i? '100%':'0%'; }
+  t0=performance.now(); paused=false;
+  clearTimeout(timer);
+  timer=setTimeout(function(){ show(cur+1); }, DUR[i]);
+  cancelAnimationFrame(raf);
+  tick();
+}
+function tick(){
+  if(paused || cur<0) return;
+  var p=Math.min((performance.now()-t0)/DUR[cur],1);
+  fills[cur].style.width=(p*100)+'%';
+  if(p<1) raf=requestAnimationFrame(tick);
+}
+function next(){ clearTimeout(timer); cancelAnimationFrame(raf); show(cur+1); }
+function pause(){ paused=true; pausedAt=performance.now(); clearTimeout(timer); cancelAnimationFrame(raf); }
+function resume(){
+  if(!paused) return;
+  t0+=performance.now()-pausedAt; paused=false;
+  var remain=Math.max(DUR[cur]-(performance.now()-t0), 0);
+  timer=setTimeout(function(){ show(cur+1); }, remain);
+  tick();
+}
+
+var stage=document.getElementById('stage');
+var pressTimer=null, longPressed=false;
+stage.addEventListener('pointerdown', function(){ longPressed=false; pressTimer=setTimeout(function(){ longPressed=true; pause(); },350); });
+stage.addEventListener('pointerup', function(e){
+  clearTimeout(pressTimer);
+  if(longPressed){ resume(); return; }
+  if(document.getElementById('replay').style.display==='flex') return;
+  next();
+});
+document.getElementById('replayBtn').addEventListener('click', function(e){
+  e.stopPropagation();
+  document.getElementById('replay').style.display='none';
+  show(0);
+});
+show(0);
+</script>
+</body>
+</html>
