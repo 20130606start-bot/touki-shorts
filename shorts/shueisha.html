@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>登記簿ショート｜資本金1億80万円の集英社</title>
+<style>
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+html,body{height:100%; background:#000;}
+body{
+  font-family:-apple-system,"Hiragino Sans",sans-serif; color:#e6edf3;
+  display:flex; align-items:center; justify-content:center;
+}
+#stage{
+  position:relative; width:100%; max-width:430px; height:100dvh; max-height:100dvh;
+  background:#0d1117; overflow:hidden; user-select:none; cursor:pointer;
+}
+#bars{ position:absolute; top:calc(env(safe-area-inset-top) + 8px); left:10px; right:10px;
+  display:flex; gap:4px; z-index:30; }
+.bar{ flex:1; height:3px; background:rgba(255,255,255,.22); border-radius:99px; overflow:hidden; }
+.bar i{ display:block; height:100%; width:0%; background:#e3b341; }
+.scene{ position:absolute; inset:0; padding:calc(env(safe-area-inset-top) + 44px) 40px 64px;
+  display:flex; flex-direction:column; justify-content:center; gap:16px;
+  opacity:0; transform:translateY(12px); transition:opacity .45s, transform .45s;
+  pointer-events:none; }
+.scene.on{ opacity:1; transform:none; pointer-events:auto; }
+.eyebrow{ font-size:16px; font-weight:800; color:#e3b341; letter-spacing:.12em; }
+h1{ font-size:31px; line-height:1.4; font-weight:900; text-wrap:balance; }
+h2{ font-size:27px; line-height:1.45; font-weight:900; }
+.big{ font-size:52px; font-weight:900; color:#e3b341; line-height:1.2; }
+.cap{ font-size:20px; line-height:1.75; color:#c9d5e3; font-weight:600; }
+.cap b{ color:#e3b341; }
+.cap strong{ color:#79c0ff; }
+.small{ font-size:13px; color:#8b949e; line-height:1.7; }
+.tcard{ background:#161b22; border:1px solid #30363d; border-radius:14px; padding:14px; }
+.trow{ display:grid; grid-template-columns:6.4em 1fr; gap:2px 10px; padding:7px 0;
+  border-bottom:1px dashed #21262d; font-size:18px; }
+.trow:last-child{ border-bottom:none; }
+.tl{ color:#8b949e; font-size:14px; padding-top:3px; }
+.hl{ background:rgba(227,179,65,.16); border-radius:6px; padding:0 4px;
+  animation:pulse 1.6s ease-in-out infinite; }
+@keyframes pulse{ 50%{ background:rgba(227,179,65,.34); } }
+.strike{ text-decoration:line-through; text-decoration-color:#ef4444; color:#8b949e; }
+.timeline{ border-left:3px solid #e3b341; padding-left:14px; display:flex; flex-direction:column; gap:10px; }
+.tstep .d{ font-size:14px; color:#e3b341; font-weight:800; }
+.tstep .n{ font-size:20px; font-weight:800; line-height:1.5; }
+.vs{ display:flex; flex-direction:column; gap:10px; }
+.vs .box{ background:#161b22; border:1px solid #30363d; border-radius:12px; padding:12px 14px; font-size:19px; line-height:1.65; }
+.vs .box .t{ font-size:14px; color:#8b949e; font-weight:800; }
+.vs .box.new{ border-color:rgba(126,231,135,.5); }
+#replay{ position:absolute; inset:0; z-index:40; display:none; align-items:center; justify-content:center;
+  flex-direction:column; gap:18px; background:rgba(0,0,0,.72); }
+#replay button{ font-family:inherit; font-size:18px; font-weight:800; color:#0d1117; background:#e3b341;
+  border:none; border-radius:999px; padding:14px 34px; cursor:pointer; }
+@media (prefers-reduced-motion: reduce){ .scene{ transition:none; } .hl{ animation:none; } }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bars"></div>
+
+  <!-- S1 フック（3.5s） -->
+  <section class="scene">
+    <div class="eyebrow">登記簿ショート #6</div>
+    <h1>集英社の登記簿、取ってみた。</h1>
+    <div class="big">資本金、<br>1億80万円。</div>
+    <p class="cap">…ジャンプの会社が？</p>
+  </section>
+
+  <!-- S2 会社の顔（6.5s） -->
+  <section class="scene">
+    <div class="eyebrow">登記簿から抜粋（2026年7月16日取得）</div>
+    <div class="tcard">
+      <div class="trow"><span class="tl">商号</span><span><b>株式会社集英社</b></span></div>
+      <div class="trow"><span class="tl">本店</span><span>東京都千代田区一ツ橋二丁目5番10号</span></div>
+      <div class="trow"><span class="tl">会社成立</span><span>昭和24年7月19日</span></div>
+      <div class="trow"><span class="tl">公告方法</span><span>官報に掲載する</span></div>
+    </div>
+    <p class="cap">本店は<b>小学館の目と鼻の先</b>。集英社は小学館から生まれた兄弟会社（とされる）。公告がいまも<b>官報</b>なのも渋い。</p>
+  </section>
+
+  <!-- S3 衝撃：目的欄（7.5s） -->
+  <section class="scene">
+    <div class="eyebrow">事業の「目的」を見てほしい</div>
+    <div class="tcard">
+      <div class="trow"><span class="tl">1号</span><span>雑誌・図書の出版</span></div>
+      <div class="trow"><span class="tl">9号</span><span>学習塾及び教育施設の経営</span></div>
+      <div class="trow"><span class="tl">10号</span><span class="hl"><b>再生医療等製品</b>の企画・製造・販売</span></div>
+      <div class="trow"><span class="tl">13号</span><span>古物営業法に基づく古物の販売</span></div>
+    </div>
+    <p class="cap">出版社の目的欄に<b>再生医療</b>。全16号、マンガだけじゃない。</p>
+  </section>
+
+  <!-- S4 種明かし：IP帝国（10s） -->
+  <section class="scene">
+    <div class="eyebrow">種明かし：目的欄は“設計図”</div>
+    <div class="tcard">
+      <div class="trow"><span class="tl">5号</span><span><b>知的財産権</b>の管理・行使・許諾</span></div>
+      <div class="trow"><span class="tl">3号</span><span>映像コンテンツの企画・制作</span></div>
+      <div class="trow"><span class="tl">6号</span><span>玩具・衣料・食品の企画・製造</span></div>
+      <div class="trow"><span class="tl">8号</span><span>イベントの企画・運営・興行</span></div>
+    </div>
+    <p class="cap">マンガの<strong>IP（知的財産）</strong>を核に、映像・グッズ・イベントへ多角化する<b>設計図</b>が目的欄に全部書いてある。令和4年に拡充された。</p>
+  </section>
+
+  <!-- S5 本命：資本金の勉強（10s） -->
+  <section class="scene">
+    <div class="eyebrow">勉強ポイント：資本金の正体</div>
+    <div class="tcard">
+      <div class="trow"><span class="tl">資本金</span><span class="hl"><b>金1億80万円</b></span></div>
+      <div class="trow"><span class="tl">株式の譲渡</span><span>取締役会の承認が必要（<b>非公開会社</b>）</span></div>
+      <div class="trow"><span class="tl">発行済株式</span><span>201万6000株</span></div>
+    </div>
+    <p class="cap"><strong>資本金は会社の“規模”ではない</strong>。設立からの積み上げの記録で、売上とも時価とも別物。上場しない老舗は小さいまま回る。</p>
+  </section>
+
+  <!-- S6 マニア①：4倍ぴったり（7.5s） -->
+  <section class="scene">
+    <div class="eyebrow">マニア①：ぴったり4倍の謎</div>
+    <div class="vs">
+      <div class="box"><div class="t">発行できる株の枠</div>806万4000株</div>
+      <div class="box new"><div class="t">実際に発行した株</div>201万6000株 → <b>ちょうど4.00倍</b></div>
+    </div>
+    <p class="cap">偶然じゃない。<b>旧商法の「発行済の4倍まで」ルール</b>の名残とみられる。今は公開会社だけの規制（会113）。</p>
+  </section>
+
+  <!-- S7 マニア②：住所の新旧（6s） -->
+  <section class="scene">
+    <div class="eyebrow">マニア②：見える住所と見えない住所</div>
+    <div class="vs">
+      <div class="box"><div class="t">従来の代表取締役</div>横浜市神奈川区●●●番●号（<b>番地まで</b>）</div>
+      <div class="box new"><div class="t">新任の代表取締役</div><b>「東京都世田谷区」で終わり</b></div>
+    </div>
+    <p class="cap">同じ日の登記で対比。<b>住所非表示措置</b>は申出制だから、同じ会社でも人によって違う。</p>
+  </section>
+
+  <!-- S8 締め（5s） -->
+  <section class="scene">
+    <h1>登記簿は、<br>会社の履歴書。</h1>
+    <div class="big" style="font-size:32px">ジャンプの裏側も、<br>1枚の登記簿。</div>
+    <p class="small">出典：登記情報提供サービス（2026年7月16日取得・会社法人等番号0100-01-018556）<br>個人の住所・氏名は公人を除き伏せています／教育目的の解説であり、断定は登記記録の記載事実のみ・沿革等は推測を含みます。</p>
+  </section>
+
+  <div id="replay"><button id="replayBtn">▶ もう一度</button></div>
+</div>
+
+<script>
+var DUR = [3500, 6500, 7500, 10000, 10000, 7500, 6000, 5000];
+var scenes = document.querySelectorAll('.scene');
+var bars = document.getElementById('bars');
+DUR.forEach(function(){ var b=document.createElement('div'); b.className='bar'; b.innerHTML='<i></i>'; bars.appendChild(b); });
+var fills = bars.querySelectorAll('.bar i');
+
+var cur=-1, t0=0, raf=null, timer=null, paused=false, pausedAt=0;
+function show(i){
+  if(i>=scenes.length){ document.getElementById('replay').style.display='flex'; return; }
+  cur=i;
+  scenes.forEach(function(s,k){ s.classList.toggle('on', k===i); });
+  for(var k=0;k<fills.length;k++){ fills[k].style.width = k<i? '100%':'0%'; }
+  t0=performance.now(); paused=false;
+  clearTimeout(timer);
+  timer=setTimeout(function(){ show(cur+1); }, DUR[i]);
+  cancelAnimationFrame(raf);
+  tick();
+}
+function tick(){
+  if(paused || cur<0) return;
+  var p=Math.min((performance.now()-t0)/DUR[cur],1);
+  fills[cur].style.width=(p*100)+'%';
+  if(p<1) raf=requestAnimationFrame(tick);
+}
+function next(){ clearTimeout(timer); cancelAnimationFrame(raf); show(cur+1); }
+function pause(){ paused=true; pausedAt=performance.now(); clearTimeout(timer); cancelAnimationFrame(raf); }
+function resume(){
+  if(!paused) return;
+  t0+=performance.now()-pausedAt; paused=false;
+  var remain=Math.max(DUR[cur]-(performance.now()-t0), 0);
+  timer=setTimeout(function(){ show(cur+1); }, remain);
+  tick();
+}
+
+var stage=document.getElementById('stage');
+var pressTimer=null, longPressed=false;
+stage.addEventListener('pointerdown', function(){ longPressed=false; pressTimer=setTimeout(function(){ longPressed=true; pause(); },350); });
+stage.addEventListener('pointerup', function(e){
+  clearTimeout(pressTimer);
+  if(longPressed){ resume(); return; }
+  if(document.getElementById('replay').style.display==='flex') return;
+  next();
+});
+document.getElementById('replayBtn').addEventListener('click', function(e){
+  e.stopPropagation();
+  document.getElementById('replay').style.display='none';
+  show(0);
+});
+show(0);
+</script>
+</body>
+</html>
