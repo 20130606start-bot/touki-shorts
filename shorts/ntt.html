@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>登記簿ショート｜NTT株式会社</title>
+<style>
+/* ===== ここから下のCSS・最下部のJSは変更禁止（変えてよいのはシーンの中身とDURだけ） ===== */
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+html,body{height:100%; background:#000;}
+body{
+  font-family:-apple-system,"Hiragino Sans",sans-serif; color:#e6edf3;
+  display:flex; align-items:center; justify-content:center;
+}
+#stage{
+  position:relative; width:100%; max-width:430px; height:100dvh; max-height:100dvh;
+  background:#0d1117; overflow:hidden; user-select:none; cursor:pointer;
+}
+#bars{ position:absolute; top:calc(env(safe-area-inset-top) + 8px); left:10px; right:10px;
+  display:flex; gap:4px; z-index:30; }
+.bar{ flex:1; height:3px; background:rgba(255,255,255,.22); border-radius:99px; overflow:hidden; }
+.bar i{ display:block; height:100%; width:0%; background:#e3b341; }
+/* 左右パディング40px＝Shortsプレイヤーの拡大表示で約9%ずつ切れるためのセーフエリア(35px)＋余裕 */
+.scene{ position:absolute; inset:0; padding:calc(env(safe-area-inset-top) + 44px) 40px 64px;
+  display:flex; flex-direction:column; justify-content:center; gap:16px;
+  opacity:0; transform:translateY(12px); transition:opacity .45s, transform .45s;
+  pointer-events:none; }
+.scene.on{ opacity:1; transform:none; pointer-events:auto; }
+.eyebrow{ font-size:16px; font-weight:800; color:#e3b341; letter-spacing:.12em; }
+h1{ font-size:31px; line-height:1.4; font-weight:900; text-wrap:balance; }
+h2{ font-size:27px; line-height:1.45; font-weight:900; }
+.big{ font-size:52px; font-weight:900; color:#e3b341; line-height:1.2; }
+.cap{ font-size:20px; line-height:1.75; color:#c9d5e3; font-weight:600; }
+.cap b{ color:#e3b341; }
+.cap strong{ color:#79c0ff; }
+.small{ font-size:13px; color:#8b949e; line-height:1.7; }
+.tcard{ background:#161b22; border:1px solid #30363d; border-radius:14px; padding:14px; }
+.trow{ display:grid; grid-template-columns:6.4em 1fr; gap:2px 10px; padding:7px 0;
+  border-bottom:1px dashed #21262d; font-size:18px; }
+.trow:last-child{ border-bottom:none; }
+.tl{ color:#8b949e; font-size:14px; padding-top:3px; }
+.hl{ background:rgba(227,179,65,.16); border-radius:6px; padding:0 4px;
+  animation:pulse 1.6s ease-in-out infinite; }
+@keyframes pulse{ 50%{ background:rgba(227,179,65,.34); } }
+.strike{ text-decoration:line-through; text-decoration-color:#ef4444; color:#8b949e; }
+.timeline{ border-left:3px solid #e3b341; padding-left:14px; display:flex; flex-direction:column; gap:10px; }
+.tstep .d{ font-size:14px; color:#e3b341; font-weight:800; }
+.tstep .n{ font-size:20px; font-weight:800; line-height:1.5; }
+.vs{ display:flex; flex-direction:column; gap:10px; }
+.vs .box{ background:#161b22; border:1px solid #30363d; border-radius:12px; padding:12px 14px; font-size:19px; line-height:1.65; }
+.vs .box .t{ font-size:14px; color:#8b949e; font-weight:800; }
+.vs .box.new{ border-color:rgba(126,231,135,.5); }
+/* 実物カット（登記簿PDFの切り抜き。pdfcut.jsで自動生成した画像＋マーカー%を使う） */
+.shot{ position:relative; background:#fff; border-radius:10px; box-shadow:0 10px 34px rgba(0,0,0,.55);
+  transform:rotate(-1.3deg); overflow:hidden; align-self:center; width:100%; }
+.shot img{ width:100%; display:block; }
+/* 蛍光ペン風マーカー: 白地にmultiplyで黄色を重ね黒文字を透かす（枠線・点滅なし＝印刷物にマーカーを引いた見た目） */
+.marker{ position:absolute; background:#ffe14d; mix-blend-mode:multiply; border-radius:3px; }
+.stamp{ align-self:center; font-size:14px; font-weight:800; color:#0d1117; background:#e3b341;
+  border-radius:999px; padding:4px 14px; }
+#replay{ position:absolute; inset:0; z-index:40; display:none; align-items:center; justify-content:center;
+  flex-direction:column; gap:18px; background:rgba(0,0,0,.72); }
+#replay button{ font-family:inherit; font-size:18px; font-weight:800; color:#0d1117; background:#e3b341;
+  border:none; border-radius:999px; padding:14px 34px; cursor:pointer; }
+@media (prefers-reduced-motion: reduce){ .scene{ transition:none; } .hl{ animation:none; } }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bars"></div>
+
+  <!-- S1 フック（3.5s） -->
+  <section class="scene">
+    <div class="eyebrow">登記簿ショート #7</div>
+    <h1>NTTの登記簿、取ってみた。</h1>
+    <div class="big" style="font-size:44px">日本電信電話<br>株式会社は、<br>もう無い。</div>
+    <p class="cap">去年、消えました。</p>
+  </section>
+
+  <!-- S2 会社の顔（6.5s） -->
+  <section class="scene">
+    <div class="eyebrow">登記簿から抜粋（2026年7月17日取得）</div>
+    <div class="tcard">
+      <div class="trow"><span class="tl">商号</span><span><b>NTT株式会社</b></span></div>
+      <div class="trow"><span class="tl">本店</span><span>東京都千代田区大手町一丁目5番1号</span></div>
+      <div class="trow"><span class="tl">会社成立</span><span>昭和60年4月1日</span></div>
+      <div class="trow"><span class="tl">公告方法</span><span>電子公告（できない時は日本経済新聞）</span></div>
+    </div>
+    <p class="cap">登記簿は<b>誰でも取れる「会社の履歴書」</b>。民営化の年に生まれた会社の中身も、数百円で見られる。</p>
+  </section>
+
+  <!-- S3 衝撃：商号変更（7.5s） -->
+  <section class="scene">
+    <div class="eyebrow">商号区に、下線が1本</div>
+    <div class="vs">
+      <div class="box"><div class="t">抹消された商号</div><span class="strike">日本電信電話株式会社</span></div>
+      <div class="box new"><div class="t">令和7年7月1日 変更</div><b class="hl">NTT株式会社</b></div>
+    </div>
+    <p class="cap">社名を変えるために、<b>法律のほうを変えた</b>とされる。NTT法が商号まで決めていたから。</p>
+  </section>
+
+  <!-- S4 種明かし：目的欄（10s） -->
+  <section class="scene">
+    <div class="eyebrow">種明かし：目的欄に子会社の実名</div>
+    <div class="tcard">
+      <div class="trow"><span class="tl">目的1号</span><span><b class="hl">NTT東日本株式会社及びNTT西日本株式会社</b>がそれぞれ発行する株式の総数を保有し…</span></div>
+    </div>
+    <p class="cap">普通の会社は目的を自由に決められる。目的の中身まで法律が枠づける<strong>特殊会社</strong>とされる。</p>
+  </section>
+
+  <!-- S5 本命：25倍（10s） -->
+  <section class="scene">
+    <div class="eyebrow">本命：ある日、株が25倍になった</div>
+    <div class="vs">
+      <div class="box"><div class="t">令和3年まで（抹消）</div><span class="strike">発行済 36億2201万2656株</span></div>
+      <div class="box new"><div class="t">令和5年7月1日</div><b class="hl">発行済 905億5031万6400株</b></div>
+    </div>
+    <p class="cap">登記簿に「分割」の文字はない。<b>数字の比で読む</b>。分割は取締役会で決められ（会183②）、<strong>資本金は1円も動かない</strong>。</p>
+  </section>
+
+  <!-- S6 マニア知識①：監査役が消えた日（7.5s） -->
+  <section class="scene">
+    <div class="eyebrow">マニア知識①：監査役が消えた日</div>
+    <div class="timeline">
+      <div class="tstep"><div class="d">令和7年6月19日</div><div class="n">監査役会設置会社を廃止</div></div>
+      <div class="tstep"><div class="d">同日</div><div class="n"><span class="hl">監査等委員会設置会社</span>を設定</div></div>
+    </div>
+    <p class="cap">監査役5人が同じ日に退任。<strong>会399条の13第6項</strong>の登記が、ここで現れる。</p>
+  </section>
+
+  <!-- S7 マニア知識②：西新宿（6s） -->
+  <section class="scene">
+    <div class="eyebrow">マニア知識②：いちばん下の欄</div>
+    <h2>まだ「西新宿」が<br>残っている。</h2>
+    <p class="cap">登記記録に関する事項：<b>平成11年7月1日 西新宿三丁目から本店移転</b>。持株会社になった年とされる。</p>
+  </section>
+
+  <!-- S8 締め（5s） -->
+  <section class="scene">
+    <h1>登記簿は、<br>会社の履歴書。</h1>
+    <div class="big" style="font-size:34px">社名は変わっても、<br>下線で残る。</div>
+    <p class="small">出典：登記情報提供サービス（2026年7月17日取得・会社法人等番号0100-01-065142）<br>個人の住所・氏名は公人を除き伏せています／教育目的の解説であり、断定は登記記録の記載事実のみ・それ以外は推測を含みます。</p>
+  </section>
+
+  <div id="replay"><button id="replayBtn">▶ もう一度</button></div>
+</div>
+
+<script>
+/* DURだけ調整可（合計56000ms以下）。以下のエンジンは変更禁止:
+   シーン送りはsetTimeout（バックグラウンドでも確実）、バー描画はrAF（見た目のみ） */
+var DUR = [3500, 6500, 7500, 10000, 10000, 7500, 6000, 5000];
+var scenes = document.querySelectorAll('.scene');
+var bars = document.getElementById('bars');
+DUR.forEach(function(){ var b=document.createElement('div'); b.className='bar'; b.innerHTML='<i></i>'; bars.appendChild(b); });
+var fills = bars.querySelectorAll('.bar i');
+
+var cur=-1, t0=0, raf=null, timer=null, paused=false, pausedAt=0;
+function show(i){
+  if(i>=scenes.length){ document.getElementById('replay').style.display='flex'; return; }
+  cur=i;
+  scenes.forEach(function(s,k){ s.classList.toggle('on', k===i); });
+  for(var k=0;k<fills.length;k++){ fills[k].style.width = k<i? '100%':'0%'; }
+  t0=performance.now(); paused=false;
+  clearTimeout(timer);
+  timer=setTimeout(function(){ show(cur+1); }, DUR[i]);
+  cancelAnimationFrame(raf);
+  tick();
+}
+function tick(){
+  if(paused || cur<0) return;
+  var p=Math.min((performance.now()-t0)/DUR[cur],1);
+  fills[cur].style.width=(p*100)+'%';
+  if(p<1) raf=requestAnimationFrame(tick);
+}
+function next(){ clearTimeout(timer); cancelAnimationFrame(raf); show(cur+1); }
+function pause(){ paused=true; pausedAt=performance.now(); clearTimeout(timer); cancelAnimationFrame(raf); }
+function resume(){
+  if(!paused) return;
+  t0+=performance.now()-pausedAt; paused=false;
+  var remain=Math.max(DUR[cur]-(performance.now()-t0), 0);
+  timer=setTimeout(function(){ show(cur+1); }, remain);
+  tick();
+}
+
+var stage=document.getElementById('stage');
+var pressTimer=null, longPressed=false;
+stage.addEventListener('pointerdown', function(){ longPressed=false; pressTimer=setTimeout(function(){ longPressed=true; pause(); },350); });
+stage.addEventListener('pointerup', function(e){
+  clearTimeout(pressTimer);
+  if(longPressed){ resume(); return; }
+  if(document.getElementById('replay').style.display==='flex') return;
+  next();
+});
+document.getElementById('replayBtn').addEventListener('click', function(e){
+  e.stopPropagation();
+  document.getElementById('replay').style.display='none';
+  show(0);
+});
+show(0);
+</script>
+</body>
+</html>
